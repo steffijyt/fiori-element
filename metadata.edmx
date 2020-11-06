@@ -21,6 +21,7 @@
                 <Property Name="Phone" Type="Edm.String" MaxLength="24" />
                 <Property Name="Website" Type="Edm.String" MaxLength="50" />
                 <Property Name="SupplierKey" Type="Edm.String" MaxLength="32" />
+                <NavigationProperty FromRole="Supplier" Name="Product" Relationship="SalesModel.FK_Supplier_Product" ToRole="Product"/>
             </EntityType>
             <EntityContainer Name="SalesEntities" m:IsDefaultEntityContainer="true"
                 xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
