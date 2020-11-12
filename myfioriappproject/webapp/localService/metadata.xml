@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <edmx:Edmx Version="1.0"
     xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
     <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"
         xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
@@ -115,6 +119,26 @@
                         </Record>
                     </Collection>
                 </Annotation>
+            </Annotations>
+            <Annotations Target="SalesModel.Supplier/Name"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Company" />
+            </Annotations>
+            <Annotations Target="SalesModel.Supplier/Category"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Category" />
+            </Annotations>
+            <Annotations Target="SalesModel.Supplier/City"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="City" />
+            </Annotations>
+            <Annotations Target="SalesModel.Supplier/Country"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Country" />
+            </Annotations>
+            <Annotations Target="SalesModel.Supplier/Phone"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Phone" />
             </Annotations>
         </Schema>
     </edmx:DataServices>
