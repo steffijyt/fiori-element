@@ -38,7 +38,9 @@
                 <Property Name="Website" Type="Edm.String" MaxLength="50" />
                 <Property Name="CountryId" Type="Edm.String" MaxLength="5" />
                 <Property Name="LogoPath" Type="Edm.String" MaxLength="255" />
+                <Property Name="ContactPersonId" Type="Edm.Int32" />
                 <NavigationProperty FromRole="Supplier" Name="ToProducts" Relationship="SalesModel.FK_Supplier_Product" ToRole="Product"/>
+                <NavigationProperty FromRole="Supplier" Name="ToContactPerson" Relationship="SalesModel.FK_Supplier_ContactPerson" ToRole="ContactPerson"/>
             </EntityType>
             <EntityType Name="Product">
                 <Key>
@@ -73,6 +75,16 @@
                 <Property Name="Code" Type="Edm.String" MaxLength="5" />
                 <Property Name="Text" Type="Edm.String" MaxLength="20" />
             </EntityType>
+            <EntityType Name="ContactPerson">
+                <Key>
+                    <PropertyRef Name="Id" />
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" />
+                <Property Name="Name" Type="Edm.String" MaxLength="30" />
+                <Property Name="Title" Type="Edm.String" MaxLength="30" />
+                <Property Name="Email" Type="Edm.String" MaxLength="30" />
+                <Property Name="Phone" Type="Edm.String" MaxLength="24" />
+            </EntityType>
             <Association Name="FK_Supplier_Product">
                 <End Multiplicity="0..1" Role="Supplier" Type="SalesModel.Supplier"/>
                 <End Multiplicity="*" Role="Product" Type="SalesModel.Product"/>
@@ -97,12 +109,25 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
+            <Association Name="FK_Supplier_ContactPerson">
+                <End Multiplicity="0..1" Role="Supplier" Type="SalesModel.Supplier"/>
+                <End Multiplicity="1" Role="ContactPerson" Type="SalesModel.ContactPerson"/>
+                <ReferentialConstraint>
+                    <Principal Role="ContactPerson">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="Supplier">
+                        <PropertyRef Name="ContactPersonId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
             <EntityContainer Name="SalesEntities" m:IsDefaultEntityContainer="true"
                 xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
                 <EntitySet EntityType="SalesModel.Supplier" Name="Suppliers" />
                 <EntitySet EntityType="SalesModel.Product" Name="Products"/>
                 <EntitySet EntityType="SalesModel.Order" Name="Orders" />
                 <EntitySet EntityType="SalesModel.VH_Country" Name="VH_Countries" />
+                <EntitySet EntityType="SalesModel.ContactPerson" Name="ContactPersons" />
                 <AssociationSet Association="SalesModel.FK_Supplier_Product" Name="S_TO_P_AssocSet">
                     <End EntitySet="Products" Role="Product"/>
                     <End EntitySet="Suppliers" Role="Supplier"/>
@@ -110,6 +135,10 @@
                 <AssociationSet Association="SalesModel.FK_Product_Order" Name="P_TO_O_AssocSet">
                     <End EntitySet="Orders" Role="Order" />
                     <End EntitySet="Products" Role="Product" />
+                </AssociationSet>
+                <AssociationSet Association="SalesModel.FK_Supplier_ContactPerson" Name="S_TO_CP_AssocSet">
+                    <End EntitySet="ContactPersons" Role="ContactPerson" />
+                    <End EntitySet="Suppliers" Role="Supplier" />
                 </AssociationSet>
             </EntityContainer>
             <Annotations Target="SalesModel.Supplier"
