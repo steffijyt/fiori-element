@@ -406,6 +406,7 @@
                 <Annotation Term="Communication.Contact">
                     <Record Type="Communication.ContactType">
                         <PropertyValue Property="fn" Path="Name"/>
+                        <PropertyValue Property="photo" Path="ImagePath"/>
                         <PropertyValue Property="role" Path="Title"/>
                         <PropertyValue Property="email">
                             <Collection>
