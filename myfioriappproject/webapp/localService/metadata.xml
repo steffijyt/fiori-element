@@ -9,6 +9,10 @@
         xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
     </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
     <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml"
         xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
@@ -156,6 +160,10 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Category"/>
                             <PropertyValue Property="Label" String="Category"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAnnotation">
+                            <PropertyValue Property="Target" AnnotationPath="ToContactPerson/@Communication.Contact"/>
+                            <PropertyValue Property="Label" String="Contact Person"/>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Country"/>
@@ -389,6 +397,31 @@
                 <Annotation Term="Capabilities.DeleteRestrictions">
                     <Record Type="Capabilities.DeleteRestrictionsType">
                         <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SalesModel.ContactPerson"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Communication.Contact">
+                    <Record Type="Communication.ContactType">
+                        <PropertyValue Property="fn" Path="Name"/>
+                        <PropertyValue Property="role" Path="Title"/>
+                        <PropertyValue Property="email">
+                            <Collection>
+                                <Record Type="Communication.EmailAddressType">
+                                    <PropertyValue Property="type" EnumMember="Communication.ContactInformationType/work"/>
+                                    <PropertyValue Property="address" Path="Email"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="tel">
+                            <Collection>
+                                <Record Type="Communication.PhoneNumberType">
+                                    <PropertyValue Property="type" EnumMember="Communication.PhoneType/preferred Communication.PhoneType/work"/>
+                                    <PropertyValue Property="uri" Path="Phone"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
                     </Record>
                 </Annotation>
             </Annotations>
