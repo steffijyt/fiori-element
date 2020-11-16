@@ -276,11 +276,11 @@
                     <Collection>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Name"/>
-                            <PropertyValue Property="Label" String="Name"/>
+                            <PropertyValue Property="Label" String="Product"/>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="QuantityPerUnit"/>
-                            <PropertyValue Property="Label" String="QuantityPerUnit"/>
+                            <PropertyValue Property="Label" String="Quantity Per Unit"/>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Discontinued"/>
@@ -288,14 +288,34 @@
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="UnitPrice"/>
-                            <PropertyValue Property="Label" String="UnitPrice"/>
+                            <PropertyValue Property="Label" String="Unit Price"/>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="UnitsInStock"/>
-                            <PropertyValue Property="Label" String="UnitsInStock"/>
+                            <PropertyValue Property="Label" String="Units In Stock"/>
                         </Record>
                     </Collection>
                 </Annotation>
+            </Annotations>
+            <Annotations Target="SalesModel.Product/Name"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Product" />
+            </Annotations>
+            <Annotations Target="SalesModel.Product/UnitsInStock"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Units In Stock" />
+            </Annotations>
+            <Annotations Target="SalesModel.Product/UnitPrice"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Unit Price" />
+            </Annotations>
+            <Annotations Target="SalesModel.Product/Discontinued"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Discontinued" />
+            </Annotations>
+            <Annotations Target="SalesModel.Product/QuantityPerUnit"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Quantity Per Unit" />
             </Annotations>
         </Schema>
     </edmx:DataServices>
