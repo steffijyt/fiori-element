@@ -21,6 +21,10 @@
         xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
     </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="Core"/>
+    </edmx:Reference>
     <edmx:DataServices m:DataServiceVersion="2.0"
         xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
         <Schema Namespace="SalesModel"
@@ -118,11 +122,11 @@
                 <End Multiplicity="0..1" Role="Supplier" Type="SalesModel.Supplier"/>
                 <End Multiplicity="1" Role="ContactPerson" Type="SalesModel.ContactPerson"/>
                 <ReferentialConstraint>
-                    <Principal Role="ContactPerson">
-                        <PropertyRef Name="Id"/>
-                    </Principal>
-                    <Dependent Role="Supplier">
+                    <Principal Role="Supplier">
                         <PropertyRef Name="ContactPersonId"/>
+                    </Principal>
+                    <Dependent Role="ContactPerson">
+                        <PropertyRef Name="Id"/>
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
@@ -264,6 +268,7 @@
             <Annotations Target="SalesModel.Supplier/Website"
                 xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Common.Label" String="Website" />
+                <Annotation Term="Core.IsURL" Bool="true" />
             </Annotations>
             <Annotations Target="SalesModel.SalesEntities/Suppliers"
                 xmlns="http://docs.oasis-open.org/odata/ns/edm">
